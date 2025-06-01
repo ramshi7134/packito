@@ -175,7 +175,8 @@
             </div>
             <div class="error-code">404</div>
             <h1>Page Not Found</h1>
-            <p>The page you're looking for doesn't exist or has been moved. Here are some helpful links instead:</p>
+            <p>We're working on it! The page you're looking for may have been moved or doesn't exist. In the meantime,
+                here are some helpful links</p>
             <div class="action-buttons">
                 <a href="/" class="btn">Go to Homepage</a>
                 <a href="/docs" class="btn btn-outline">View Documentation</a>
