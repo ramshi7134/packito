@@ -178,7 +178,7 @@
             <p>The page you're looking for doesn't exist or has been moved. Here are some helpful links instead:</p>
             <div class="action-buttons">
                 <a href="/" class="btn">Go to Homepage</a>
-                <a href="/docs" class="btn-outline">View Documentation</a>
+                <a href="/docs" class="btn btn-outline">View Documentation</a>
             </div>
         </div>
     </div>
