@@ -37,3 +37,7 @@
 </body>
 
 </html>
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    data-id="itsmeramsheed" data-description="Support me on Buy me a coffee!"
+    data-message="Support me by buying a coffee — it helps me keep building and improving!" data-color="#5F7FFF"
+    data-position="Right" data-x_margin="18" data-y_margin="18"></script>
