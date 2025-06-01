@@ -337,3 +337,8 @@
 </body>
 
 </html>
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    data-id="itsmeramsheed" data-description="Support me on Buy me a coffee!"
+    data-message="☕ Love what I’m building?
+If you’d like to support my work and help fuel more late-night coding sessions, consider buying me a coffee! Every cup helps. 🙌" data-color="#40DCA5" data-position="Right" data-x_margin="18"
+    data-y_margin="18"></script>
