@@ -203,18 +203,11 @@ class {$class}Request extends FormRequest
 
     protected function generateResource(string $class,$sql)
     {
-        preg_match_all('/`(\w+)`\s+[\w()]+/', $sql, $matches);
-    $columns = $matches[1] ?? [];
+         [$tableName, $columns, $foreignKeys, $indexes] = $this->parseCreateTableQuery($sql);
 
-    $lines = array_map(function ($col) {
-        if (in_array($col, ['created_at', 'updated_at'])) {
-            return "            '{$col}' => \$this->{$col}?->toDateTimeString(),";
-        }
-
-        return "            '{$col}' => \$this->{$col},";
-    }, $columns);
-
-    $fields = implode("\n", $lines);
+        $columnsString = implode(",\n", array_map(function ($col) {
+        return "                    '{$col}' => \$item->{$col}";
+            }, array_keys( $columns)));
 
     return "<?php
 
@@ -233,29 +226,20 @@ class {$class}Resource extends JsonResource
     public function toArray(\$request)
     {
         return [
-{$fields}
+{$columnsString}
         ];
     }
 }
 ";
     }
 
-    protected function generateCollection(string $class,$createTableSql)
+    protected function generateCollection(string $class,$sql)
     {
-       preg_match_all('/`(\w+)`\s+[\w()]+/', $createTableSql, $matches);
-    $columns = $matches[1] ?? [];
+        [$tableName, $columns, $foreignKeys, $indexes] = $this->parseCreateTableQuery($sql);
 
-    // Remove Laravel default timestamps if not explicitly declared
-    $columns = array_unique(array_filter($columns));
-
-    $fields = array_map(function ($col) {
-        if (in_array($col, ['created_at', 'updated_at'])) {
-            return "                    '{$col}' => \$item->{$col}->toDateTimeString(),";
-        }
-        return "                    '{$col}' => \$item->{$col},";
-    }, $columns);
-
-    $fieldsStr = implode("\n", $fields);
+        $columnsString = implode(",\n", array_map(function ($col) {
+        return "                    '{$col}' => \$item->{$col}";
+            }, array_keys( $columns)));
 
     return "<?php
 
@@ -276,7 +260,7 @@ class {$class}Collection extends ResourceCollection
         return [
             'data' => \$this->collection->map(function (\$item) {
                 return [
-{$fieldsStr}
+{$columnsString}
                 ];
             }),
         ];
