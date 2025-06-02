@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GeneratorController;
+use App\Http\Controllers\SSOLoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/generator', [GeneratorController::class, 'index'])->name('generator.index');
     Route::post('/generator', [GeneratorController::class, 'generate'])->name('generator.generate');
 });
+
+Route::get('/auth/redirect', [SSOLoginController::class, 'redirectToProvider'])->name('sso.redirect');
+Route::get('/auth/callback', [SSOLoginController::class, 'handleProviderCallback'])->name('sso.callback');
 
 
 require __DIR__.'/auth.php';
