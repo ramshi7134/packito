@@ -452,8 +452,9 @@ class {$class}Policy
     {
         return json_encode(
             [
-                'name' => "generated/{$slug}",
-                'description' => "Generated {$studly} package",
+                'name' => "webpacks/{$slug}",
+                'version' => '1.0.0',
+                'description' => "{$studly} package",
                 'require' => [
                     'php' => '^8.2',
                     'laravel/framework' => '^11.0',
